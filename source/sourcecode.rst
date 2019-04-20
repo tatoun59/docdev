@@ -3,33 +3,33 @@
 Source Code management
 ======================
 
-GLPI source code management is handled by `GIT <https://en.wikipedia.org/wiki/Git>`_ and hosted on `GitHub <https://github.com/glpi-project/glpi>`_.
+Le code source de GLPI est gérée par `GIT <https://en.wikipedia.org/wiki/Git>`_ et hébergée sur `GitHub <https://github.com/glpi-project/glpi>`_.
 
-In order to contribute to the source code, you will have to know a few things about Git and the development model we follow.
+Pour contribuer au code source, vous devez connaître un certain nombre de choses sur Git et le modèle de développement que nous suivons.
 
 Branches
 --------
 
-On the Git repository, you will  find several existing branches:
+Sur le dépôt Git, vous trouverez plusieurs branches :
 
-* `master` contains the next major release source code,
-* `xx/bugfixes` contains the next minor release source code,
-* you should not care about all other branches that may exists, they should have been deleted right now.
+* `master` contient le code source de la prochaine version majeure,
+* `xx/bugfixes` contient le code source de la prochaine version mineure,
+* vous ne devriez pas vous soucier de toutes les autres branches qui peuvent exister, elles devraient avoir été supprimées maintenant.
 
-The `master` branch is where new features are added. This code is reputed as **non stable**.
+La branche `master' est l'endroit où de nouvelles fonctionnalités sont ajoutées. Ce code est réputé comme **non stable**.
 
-The `xx/bugfixes` branches is where bugs are fixed. This code is reputed as *stable*.
+Les branches `xx/bugfixes` sont celles où les bogues sont corrigés. Ce code est réputé *stable*.
 
-Those branches are created when any major version is released. At the time I wrote these lines, latest stable version is `9.1` so the current bugfix branch is `9.1/bugfixes`. As old versions are not supported, old bugfixes branches will not be changed at all; while they're still existing.
+Ces branches sont créées lorsque une version majeure est publiée. Au moment où j'ai écrit ces lignes, la dernière version stable est `9.1`, donc la branche de correction des bogues actuelle est `9.1/bugfixes'. Comme les anciennes versions ne sont plus supportées, les anciennes branches de corrections de bogues ne sont plus modifiées.
 
-Testing
--------
+Tests
+-----
 
-There are more and more unit tests in GLPI; we use the `atoum unit tests framework <http://atoum.org>`_.
+Il y a de plus en plus de tests unitaires dans GLPI ; nous utilisons le `framework de tests unitaires atoum <http://atoum.org>`_.
 
-Every proposal **must** contains unit tests; for new features as well as bugfixes. For the bugfixes; this is not a strict requirement if this is part of code that is not tested at all yet. See the :ref:`unit testing section <unittests>` at the bottom of the page.
+Chaque proposition **doit** contenir des tests unitaires, les nouvelles fonctionnalités comme les corrections de bogues. Pour les corrections de bogues, ce n'est pas une exigence stricte si cela fait partie du code qui n'a pas encore été testé. Voir la section :ref:`unit testing section <unittests>` en bas de page.
 
-Anyways, existing unit tests may never be broken, if you made a change that breaks something, check your code, or change the unit tests, but fix that! ;)
+Quoi qu'il en soit, les tests unitaires existants ne doivent jamais être cassés, si vous avez fait un changement qui casse quelque chose, vérifiez votre code, ou modifiez les tests unitaires, mais corrigez ça ! ;-)
 
 .. _fhs:
 
