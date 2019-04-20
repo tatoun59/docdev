@@ -33,29 +33,31 @@ Quoi qu'il en soit, les tests unitaires existants ne doivent jamais être cassé
 
 .. _fhs:
 
-File Hierarchy System
----------------------
+Structuration hiérarchique des fichiers
+---------------------------------------
 
 .. note::
 
-   This lists current files and directories listed in the source code of GLPI. Some files are not part of distribued archives.
+   Cela liste les répertoires et fichiers courants du code source de GLPI. Certains fichiers ne font pas partie des archives distribuées.
 
 This is a brieve description of GLPI main folders and files:
+Voici une brève description des dossiers et fichiers principaux de GLPI :
 
-* |folder| `.tx`: Transifex configuration
+
+* |folder| `.tx`: Configuration Transifex
 * |folder| `ajax`
 
-  * |phpfile| `*.php`: Ajax components
+  * |phpfile| `*.php`: Composants Ajax
 
-* |folder| `files` Files written by GLPI or plugins (documents, session files, log files, ...)
+* |folder| `files` Fichiers écrits par GLPI ou ses plugins (documents, fichiers de session, fichiers journaux, ...)
 * |folder| `front`
 
-  * |phpfile| `*.php`: Front components (all displayed pages)
+  * |phpfile| `*.php`: Composants Front (toutes les pages affichées)
 
-* |folder| `config` (only populated once installed)
+* |folder| `config` (uniquement rempli une fois installé)
 
-  * |phpfile| `config_db.php`: Database configuration file
-  * |phpfile| `local_define.php`: Optional file to override some constants definitions (see ``inc/define.php``)
+  * |phpfile| `config_db.php`: Fichier de configuration de la base de données
+  * |phpfile| `local_define.php`: Fichier optionnel pour remplacer certaines définitions de constantes (voir ``inc/define.php``)
 
 * |folder| `css`
 
@@ -64,63 +66,63 @@ This is a brieve description of GLPI main folders and files:
 
 * |folder| `inc`
 
-  * |phpfile| `*.php`: Classes, functions and definitions
+  * |phpfile| `*.php`: Classes, fonctions et définitions
 
 * |folder| `install`
 
   * |folder| `mysql`: MariaDB/MySQL schemas
-  * |phpfile| `*.php`: upgrades scripts and installer
+  * |phpfile| `*.php`: scripts de mise à jour et programme d'installation
 
 * |folder| `js`
 
-  * |file| `*.js`: Javascript files
+  * |file| `*.js`: fichiers Javascript
 
 * |folder| `lib`
 
-  * |folder| `...`: external Javascript libraries
+  * |folder| `...`: librairies externes Javascript
 
 * |folder| `locales`
 
-  * |file| `glpi.pot`: Gettext's POT file
-  * |file| `*.po`: Gettext's translations
-  * |file| `*.mo`: Gettext's compiled translations
+  * |file| `glpi.pot`: fichier POT de Gettext
+  * |file| `*.po`: traductions de Gettext
+  * |file| `*.mo`: traductions compilées de Gettext
 
 * |folder| `pics`
 
-  * |file| `*.*`: pictures and icons
+  * |file| `*.*`: images et icones
 
 * |folder| `plugins`:
 
   * |folder| `...`: where all plugins lends
 
-* |folder| `scripts`: various scripts which can be used in crontabs for example
-* |folder| `tests`: unit and integration tests
-* |folder| `tools`: a bunch of tools
-* |folder| `vendor`: third party libs installed from composer (see composer.json below)
+* |folder| `scripts`: divers scripts qui peuvent être utilisés dans les crontabs par exemple
+* |folder| `tests`: tests unitaires et d'intégration
+* |folder| `tools`: divers outils
+* |folder| `vendor`: librairies tierces installées à partir de composer (voir composer.json ci-dessous)
 * |file| `.gitignore`: Git ignore list
 * |file| `.htaccess`: Some convenient apache rules (all are commented)
-* |file| `.travis.yml`: Travis-CI configuration file
-* |phpfile| `apirest.php`: REST API main entry point
-* |file| `apirest.md`: REST API documentation
-* |phpfile| `apixmlrpc.php`: XMLRPC API main entry point
-* |file| `AUTHORS.txt`: list of GLPI authors
-* |file| `CHANGELOG.md`: Changes
-* |file| `composer.json`: Definition of third party libraries (`see composer website <https://getcomposer.org>`_)
+* |file| `.travis.yml`: fichier de configuration de Travis
+* |phpfile| `apirest.php`: Point d'entrée principal de l'API REST
+* |file| `apirest.md`: documentation de REST API
+* |phpfile| `apixmlrpc.php`: Point d'entrée principal de l'API XMLRPC
+* |file| `AUTHORS.txt`: liste des auteurs GLPI
+* |file| `CHANGELOG.md`: Changements
+* |file| `composer.json`: Définition des bibliothèques tierces (`voir le site de composer <https://getcomposer.org>`_)
 * |file| `COPYING.txt`: Licence
-* |phpfile| `index.php`: main application entry point
-* |file| `phpunit.xml.dist`: unit testing configuration file
+* |phpfile| `index.php`: Point d'entrée principal de l'application
+* |file| `phpunit.xml.dist`: fichier de configuration des tests unitaires
 * |file| `README.md`: well... a README ;)
-* |file| `status.php`: get GLPI status for monitoring purposes
+* |file| `status.php`: obtenir le statut GLPI à des fins de suivi
 
 
 
 Workflow
 --------
 
-In short...
+En résumé...
 ^^^^^^^^^^^
 
-In a short form, here is the workflow we'll follow:
+En bref, voici le workflow que nous allons suivre :
 
 * `create a ticket <https://github.com/glpi-project/glpi/issues/new>`_
 * fork, create a specific branch, and hack
