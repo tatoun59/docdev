@@ -124,55 +124,57 @@ En résumé...
 
 En bref, voici le workflow que nous allons suivre :
 
-* `create a ticket <https://github.com/glpi-project/glpi/issues/new>`_
-* fork, create a specific branch, and hack
-* open a :abbr:`PR (Pull Request)`
+* `Créez un ticket <https://github.com/glpi-project/glpi/issues/new>`_
+* forkez, créer une branche spécifique, et modifier le code
+* Ouvrez une :abbr:`PR (Pull Request)`
 
-Each bug will be fixed in a branch that came from the correct `bugfixes` branch. Once merged into the requested branch, developper must report the fixes in the `master`; with a simple cherry-pick for simple cases, or opening another pull request if changes are huge.
+Chaque bogue sera corrigé dans une branche provenant de la branche `bugfixes' correcte. Une fois fusionné dans la branche demandée, le développeur doit rapporter les correctifs dans la branche `master' ; avec un simple cherry-pick pour les cas simples, ou en ouvrant une autre pull request si les changements sont importants.
 
-Each feature will be hacked in a branch that came from `master`, and will be merged back to `master`.
+Chaque nouvelle fonctionnalité sera developpée dans une branche provenant de `master', et sera fusionnée en `master'.
 
-General
+Général
 ^^^^^^^
 
-Most of the times, when you'll want to contribute to the project, you'll have to retrieve the code and change it before you can report upstream. Note that I will detail here the basic command line instructions to get things working; but of course, you'll find equivalents in your favorite Git GUI/tool/whatever ;)
+La plupart du temps, lorsque vous voudrez contribuer au projet, vous devrez récupérer le code et le modifier avant de pouvoir faire un rapport en amont. Notez que je vais détailler ici les instructions de base en ligne de commande pour faire fonctionner les choses ; mais bien sûr, vous trouverez des équivalents dans votre GUI/outil/peu importe Git préféré ;-)
 
 Just work with a:
+Il suffit de faire un :
 
 .. code-block:: bash
 
    $ git clone https://github.com/glpi-project/glpi.git
 
-A directory named ``glpi`` will bre created where you've issued the clone.
+Un répertoire ``glpi`` sera créé dans lequel se trouveront les fichiers.
 
-Then - if you did not already - you will have to create a fork of the repository on your github account; using the `Fork` button from the `GLPI's Github page <https://github.com/glpi-project/glpi/>`_. This will take a few moments, and you will have a repository created, `{you user name}/glpi - forked from glpi-project/glpi`.
+Ensuite, si vous ne l’avez pas déjà fait, vous devrez créer un fork du repository sur votre compte github; en utilisant le bouton Fork de la page Github de GLPI. Cela prendra quelques instants et vous aurez un repository créé, {votre nom d'utilisateur}/glpi-créé à partir de glpi-project/glpi.
 
-Add your fork as a remote from the cloned directory:
+Ajouter votre fork (sur Github) comme référence distante de votre répertoire cloné (localement) :
 
 .. code-block:: bash
 
    $ git remote add my_fork https://github.com/{your user name}/glpi.git
 
 You can replace `my_fork` with what you want but `origin` (just remember it); and you will find your fork URL from the Github UI.
+Vous pouvez remplacer `my_fork` par ce que vous voulez, mais par l’ origine (rappelez-vous-en); et vous trouverez l'URL de votre fork dans l'interface utilisateur de Github.
 
-A basic good practice using Git is to create a branch for everything you want to do; we'll talk about that in the sections below. Just keep in mind that you will publish your branches on you fork, so you can propose your changes.
+Une bonne pratique de base en utilisant Git est de créer une branche pour tout ce que vous voulez faire. nous en parlerons dans les sections ci-dessous. N'oubliez pas que vous allez publier vos branches sur votre fork pour pouvoir proposer vos modifications.
 
-When you open a new pull request, it will be reviewed by one or more member of the community. If you're asked to make some changes, just commit again on your local branch, push it, and you're done; the pull request will be automatically updated.
+Lorsque vous ouvrez une nouvelle pull request, celle-ci sera examinée par un ou plusieurs membres de la communauté. Si vous êtes invité à apporter des modifications, il vous suffit de valider à nouveau dans votre branche locale, de commiter à nouveau et c'est tout. La demande de pull request sera automatiquement mise à jour.
 
 .. note::
 
-   It's up to you to manage your fork; and keep it up to date. I'll advice you to keep original branches (such as ``master`` or ``x.y/bugfixes``) pointing on the upstream repository.
+   C'est à vous à gérer votre fork et le garder à jour. Je vous conseillerai de garder les branches d'origine (telles que ``master`` ou ``x.y/bugfixes``) pointant sur le référentiel en amont.
 
-   Tha way, you'll just have to update the branch from the main repository before doing anything.
+   De cette façon, il vous suffira de mettre à jour la branche à partir du référentiel principal avant de faire quoi que ce soit.
 
-Bugs
-^^^^
+Bogues
+^^^^^^
 
-If you find a bug in the current stable release, you'll have to work on the `bugfixes` branch; and, as we've said already, create a specific branch to work on. You may name your branch explicitely like `9.1/fix-sthing` or to reference an existing issue `9.1/fix-1234`; just prefix it with `{version}/fix-`.
+Si vous trouvez un bogue dans la version stable actuelle, vous devrez travailler sur la branche `bugfixes` et, comme nous l’avons déjà dit, créez une branche spécifique sur laquelle travailler. Vous pouvez nommer explicitement votre branche comme `9.1/fix-sthing` ou faire référence à un problème existant `9.1/fix-1234` ; préfixez-le simplement avec `{version}/fix-`.
 
-Generally, the very first step for a bug is to be `filled in a ticket <https://github.com/glpi-project/glpi/issues>`_.
+Généralement, la toute première étape d'un bogue consiste à `renseigner un ticket <https://github.com/glpi-project/glpi/issues>`_.
 
-From the clone directory:
+À partir du répertoire de clonage:
 
 .. code-block:: bash
 
@@ -180,26 +182,26 @@ From the clone directory:
    $ git branch 9.1/fix-bad-api-callback
    $ git co 9.1/fix-bad-api-callback
 
-At this point, you're working on an only local branch named `9.1/fix-api-callback`. You can now work to solve the issue, and commit (as frequently as you want).
+À ce stade, vous travaillez sur une seule branche locale nommée `9.1/fix-api-callback`. Vous pouvez maintenant travailler pour résoudre le problème et commiter (aussi souvent que vous le souhaitez).
 
-At the end, you will want to get your changes back to the project. So, just push the branch to your fork remote:
+À la fin, vous voudrez que vos modifications soient apportées au projet. Donc, il suffit de pousser la branche sur votre fork distant:
 
 .. code-block:: bash
 
    $ git push -u my_fork 9.1/fix-api-callback
 
-Last step is to create a PR to get your changes back to the project. You'll find the button to do this visiting your fork or even main project github page.
+La dernière étape consiste à créer un PR pour que vos modifications soient apportées au projet. Vous trouverez le bouton permettant de le faire en visitant votre page fork ou même la page principale de github du projet.
 
-Just remember here we're working on some bugfix, that should reach the `bugfixes` branch; the PR creation will probably propose you to merge against the `master` branch; and maybe will tell you they are conflicts, or many commits you do not know about... Just set the base branch to the correct bugfixes and that should be good.
+Rappelez-vous simplement que nous travaillons sur un correctif, qui devrait atteindre la branche `bugfixes` ; la création d'un PR va probablement vous proposer de fusionner avec la branche `master`  et peut-être vous dira-t-il qu'il y a des conflits, ou de nombreux commits dont vous ignorez l'existence... Réglez simplement la branche de base sur les bons correctifs et cela devrait être bon.
 
-Features
-^^^^^^^^
+fonctionnalités
+^^^^^^^^^^^^^^^
 
-Before doing any work on any feature, mays sure it has been discussed by the community. Open - if it does not exists yet - a ticket with your detailled proposition. Fo technical features, you can work directly on github; but for work proposals, you should take a look at our `feature proposal platform <http://glpi.userecho.com/>`_.
+Avant de commencer tout travail sur une fonctionnalité, il est certain que la communauté en a discuté. Ouvrez - s'il n'existe pas encore - un ticket avec votre proposition détaillée. Pour les fonctionnalités techniques, vous pouvez travailler directement sur github; mais pour les propositions de travail, vous devriez jeter un coup d'œil à notre `plateforme de propositions de fonctionnalités <http://glpi.userecho.com/>`_.
 
-If you want to add a new feature, you will have to work on the `master` branch, and create a local branch with the name you want, prefixed with `feature/`.
+Si vous souhaitez ajouter une nouvelle fonctionnalité, vous devrez travailler sur la branche principale et créer une branche locale portant le nom de votre choix, préfixée de `feature/`.
 
-From the clone directory:
+À partir du répertoire de clonage:
 
 .. code-block:: bash
 
@@ -207,41 +209,43 @@ From the clone directory:
    $ git co feature/my-killler feature
 
 
-You'll notice we do no change branch on the first step; that is just because `master` is the default branch, and therefore the one you'll be set on just fafter cloning. At this point, you're working on an only local branch named `feature/my-killer-feature`. You can now work and commit (as frequently as you want).
+Vous remarquerez que nous ne changeons pas de branche à la première étape? C'est simplement parce que `master` est la branche par défaut et donc celle que vous allez définir sur le clonage juste après. À ce stade, vous travaillez sur une branche locale uniquement appelée `feature/my-killer-feature`. Vous pouvez maintenant travailler et commiter (aussi souvent que vous le souhaitez).
 
-At the end, you will want to get your changes back to the project. So, just push the branch on your fork remote:
+À la fin, vous voudrez que vos modifications soient apportées au projet. Donc, il suffit de pousser la branche sur votre fork distant :
+
 
 .. code-block:: bash
 
    $ git push -u my_fork feature/my-killer-feature
 
-Commit messages
-^^^^^^^^^^^^^^^
+Commit des messages
+^^^^^^^^^^^^^^^^^^^
 
-There are several good practices regarding commit messages, but this is quite simple:
+Il existe plusieurs bonnes pratiques concernant les messages de validation, mais ceci est assez simple:
 
-* the commit message may refer an existing ticket if any,
+* le message de validation peut faire référence à un ticket existant, le cas échéant,
 
-  * just make a simple reference to a ticket with keywords like ``refs #1234`` or ``see #1234"``,
-  * automatically close a ticket when commit will be merged back with keywords like ``closes #1234`` or ``fixes #1234``,
+  * il suffit de faire référence à un ticket avec des mots clés tels que ``refs #1234`` or ``see #1234"``,
+  * fermer automatiquement un ticket quand le commit sera fusionné avec des mots clés comme ``closes #1234`` or ``fixes #1234``,
 
-* the first line of the commit should be as short and as concise as possible
-* if you want or have to provide details, let a blank line after the first commit line, and go on. Please avoid very long lines (some conventions talks about 80 characters maximum per line, to keep it lisible).
+* la première ligne du commit doit être aussi courte et concise que possible
+* si vous voulez ou devez fournir des détails, laissez une ligne vierge après la première ligne de commit. Évitez les longues lignes (certaines conventions parlent de 80 caractères maximum par ligne, afin de garder de la lisibilité).
 
 .. _3rd_party_libs:
 
 Third party libraries
 ^^^^^^^^^^^^^^^^^^^^^
 
-Third party libraries are handled using the `composer tool <http://getcomposer.org>`_.
+Les bibliothèques tierces sont gérées à l'aide de `l'outil composer <http://getcomposer.org>`_.
 
-To install existing dependencies, just install composer from their website or from your distribution repositories and then run:
+Pour installer des dépendances existantes, installez simplement composer à partir de son site Web ou des dépots de votre distribution, puis exécutez:
 
 .. code-block:: bash
 
    $ composer install
 
-To add a new library, you will probably found the command line on the library documentation, something like:
+Pour ajouter une nouvelle bibliothèque, vous aurez probablement trouvé la ligne de commande dans la documentation de la bibliothèque qui doit ressembler à quelque chose comme:
+
 
 .. code-block:: bash
 
@@ -249,20 +253,21 @@ To add a new library, you will probably found the command line on the library do
 
 .. _unittests:
 
-Unit testing (and functionnal testing)
---------------------------------------
+Tests unitaires (et tests fonctionnels)
+---------------------------------------
 
 .. note::
 
-   A note for the purists... In GLPI, there are both unit and functional tests; without real distinction ;-)
+   Un mot pour les puristes… Dans GLPI, il existe des tests unitaires et fonctionnels; sans réelle distinction ;-)
 
 We use the `atoum unit tests framework <http://atoum.org>`_; see `GLPI website if you wonder why <http://glpi-project.org/spip.php?breve375>`_.
+Nous utilisons `le framework de tests unitaires atoum <http://atoum.org>`_. Consultez le site Web de GLPI si vous vous demandez pourquoi.
 
-`atoum`'s documentation in available at: http://docs.atoum.org
+La documentation d’`atoum` est disponible à l’ adresse suivante : http://docs.atoum.org
 
 .. warning::
 
-   With `atoum`, test class **must** refer to an existing class of the project!
+   Avec `atoum`, la classe de test doit faire référence à une classe existante du projet !
 
 Tests isolation
 ^^^^^^^^^^^^^^^
