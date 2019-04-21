@@ -40,79 +40,78 @@ Structuration hiérarchique des fichiers
 
    Cela liste les répertoires et fichiers courants du code source de GLPI. Certains fichiers ne font pas partie des archives distribuées.
 
-This is a brieve description of GLPI main folders and files:
 Voici une brève description des dossiers et fichiers principaux de GLPI :
 
 
-* |folder| `.tx`: Configuration Transifex
+* |folder| `.tx` : Configuration Transifex
 * |folder| `ajax`
 
-  * |phpfile| `*.php`: Composants Ajax
+  * |phpfile| `*.php` : Composants Ajax
 
-* |folder| `files` Fichiers écrits par GLPI ou ses plugins (documents, fichiers de session, fichiers journaux, ...)
+* |folder| `files` : Fichiers écrits par GLPI ou ses plugins (documents, fichiers de session, fichiers journaux, ...)
 * |folder| `front`
 
-  * |phpfile| `*.php`: Composants Front (toutes les pages affichées)
+  * |phpfile| `*.php` : Composants Front (toutes les pages affichées)
 
-* |folder| `config` (uniquement rempli une fois installé)
+* |folder| `config` : (uniquement rempli une fois installé)
 
-  * |phpfile| `config_db.php`: Fichier de configuration de la base de données
-  * |phpfile| `local_define.php`: Fichier optionnel pour remplacer certaines définitions de constantes (voir ``inc/define.php``)
+  * |phpfile| `config_db.php` : Fichier de configuration de la base de données
+  * |phpfile| `local_define.php` : Fichier optionnel pour remplacer certaines définitions de constantes (voir ``inc/define.php``)
 
 * |folder| `css`
 
-  * |folder| `...`: CSS stylesheets
-  * |file| `*.css`: CSS stylesheets
+  * |folder| `...` : CSS stylesheets
+  * |file| `*.css` : CSS stylesheets
 
 * |folder| `inc`
 
-  * |phpfile| `*.php`: Classes, fonctions et définitions
+  * |phpfile| `*.php` : Classes, fonctions et définitions
 
 * |folder| `install`
 
-  * |folder| `mysql`: MariaDB/MySQL schemas
-  * |phpfile| `*.php`: scripts de mise à jour et programme d'installation
+  * |folder| `mysql` : MariaDB/MySQL schemas
+  * |phpfile| `*.php` : scripts de mise à jour et programme d'installation
 
 * |folder| `js`
 
-  * |file| `*.js`: fichiers Javascript
+  * |file| `*.js` : fichiers Javascript
 
 * |folder| `lib`
 
-  * |folder| `...`: librairies externes Javascript
+  * |folder| `...` : librairies externes Javascript
 
 * |folder| `locales`
 
-  * |file| `glpi.pot`: fichier POT de Gettext
-  * |file| `*.po`: traductions de Gettext
-  * |file| `*.mo`: traductions compilées de Gettext
+  * |file| `glpi.pot` : fichier POT de Gettext
+  * |file| `*.po` : traductions de Gettext
+  * |file| `*.mo` : traductions compilées de Gettext
 
 * |folder| `pics`
 
-  * |file| `*.*`: images et icones
+  * |file| `*.*` : images et icones
 
-* |folder| `plugins`:
+* |folder| `plugins` :
 
-  * |folder| `...`: where all plugins lends
+  * |folder| `...` : where all plugins lends
 
-* |folder| `scripts`: divers scripts qui peuvent être utilisés dans les crontabs par exemple
-* |folder| `tests`: tests unitaires et d'intégration
-* |folder| `tools`: divers outils
-* |folder| `vendor`: librairies tierces installées à partir de composer (voir composer.json ci-dessous)
-* |file| `.gitignore`: Git ignore list
-* |file| `.htaccess`: Some convenient apache rules (all are commented)
-* |file| `.travis.yml`: fichier de configuration de Travis
-* |phpfile| `apirest.php`: Point d'entrée principal de l'API REST
-* |file| `apirest.md`: documentation de REST API
-* |phpfile| `apixmlrpc.php`: Point d'entrée principal de l'API XMLRPC
-* |file| `AUTHORS.txt`: liste des auteurs GLPI
-* |file| `CHANGELOG.md`: Changements
-* |file| `composer.json`: Définition des bibliothèques tierces (`voir le site de composer <https://getcomposer.org>`_)
-* |file| `COPYING.txt`: Licence
-* |phpfile| `index.php`: Point d'entrée principal de l'application
-* |file| `phpunit.xml.dist`: fichier de configuration des tests unitaires
-* |file| `README.md`: well... a README ;)
-* |file| `status.php`: obtenir le statut GLPI à des fins de suivi
+* |folder| `scripts` : divers scripts qui peuvent être utilisés dans les crontabs par exemple
+* |folder| `tests` : tests unitaires et d'intégration
+* |folder| `tools` : divers outils
+* |folder| `vendor` : librairies tierces installées à partir de composer (voir composer.json ci-dessous)
+* |file| `.gitignore` : Git ignore list
+* |file| `.htaccess` : Some convenient apache rules (all are commented)
+* |file| `.travis.yml` : fichier de configuration de Travis
+* |phpfile| `apirest.php` : Point d'entrée principal de l'API REST
+* |file| `apirest.md` : documentation de REST API
+* |phpfile| `apixmlrpc.php` : Point d'entrée principal de l'API XMLRPC
+* |file| `AUTHORS.txt` : liste des auteurs GLPI
+* |file| `CHANGELOG.md` : Changements
+* |file| `composer.json` : Définition des bibliothèques tierces (`voir le site de composer <https://getcomposer.org>`_)
+* |file| `COPYING.txt` : Licence
+* |phpfile| `index.php` : Point d'entrée principal de l'application
+* |file| `phpunit.xml.dist` : fichier de configuration des tests unitaires
+* |file| `README.md` : well... a README ;)
+* |file| `status.php` : obtenir le statut GLPI à des fins de suivi
 
 
 
@@ -124,20 +123,19 @@ En résumé...
 
 En bref, voici le workflow que nous allons suivre :
 
-* `Créez un ticket <https://github.com/glpi-project/glpi/issues/new>`_
-* forkez, créer une branche spécifique, et modifier le code
-* Ouvrez une :abbr:`PR (Pull Request)`
+* `Créer un ticket <https://github.com/glpi-project/glpi/issues/new>`_
+* forker, créer une branche spécifique et modifier le code
+* Ouvrir une :abbr:`PR (Pull Request)`
 
-Chaque bogue sera corrigé dans une branche provenant de la branche `bugfixes' correcte. Une fois fusionné dans la branche demandée, le développeur doit rapporter les correctifs dans la branche `master' ; avec un simple cherry-pick pour les cas simples, ou en ouvrant une autre pull request si les changements sont importants.
+Chaque bogue sera corrigé dans une branche provenant de la branche `bugfixes' correcte. Une fois fusionné dans la branche demandée, le développeur doit rapporter les correctifs dans la branche `master' ; avec un simple cherry-pick pour les cas simples ou en ouvrant une autre pull request si les changements sont importants.
 
-Chaque nouvelle fonctionnalité sera developpée dans une branche provenant de `master', et sera fusionnée en `master'.
+Chaque nouvelle fonctionnalité sera developpée dans une branche provenant de `master' et sera fusionnée avec `master'.
 
 Général
 ^^^^^^^
 
-La plupart du temps, lorsque vous voudrez contribuer au projet, vous devrez récupérer le code et le modifier avant de pouvoir faire un rapport en amont. Notez que je vais détailler ici les instructions de base en ligne de commande pour faire fonctionner les choses ; mais bien sûr, vous trouverez des équivalents dans votre GUI/outil/peu importe Git préféré ;-)
+La plupart du temps, lorsque vous voudrez contribuer au projet, vous devrez récupérer le code et le modifier avant de pouvoir faire un rapport dans le référentiel de GLPI. Notez que je vais détailler ici les instructions de base en ligne de commande pour faire fonctionner les choses ; mais bien sûr, vous trouverez des équivalents dans votre GUI/outil/peu importe Git préféré ;-)
 
-Just work with a:
 Il suffit de faire un :
 
 .. code-block:: bash
@@ -146,7 +144,7 @@ Il suffit de faire un :
 
 Un répertoire ``glpi`` sera créé dans lequel se trouveront les fichiers.
 
-Ensuite, si vous ne l’avez pas déjà fait, vous devrez créer un fork du repository sur votre compte github; en utilisant le bouton Fork de la page Github de GLPI. Cela prendra quelques instants et vous aurez un repository créé, {votre nom d'utilisateur}/glpi-créé à partir de glpi-project/glpi.
+Ensuite, si vous ne l’avez pas déjà fait, vous devrez créer un fork du repository sur votre compte github en utilisant le bouton Fork de la page Github de GLPI. Cela prendra quelques instants et vous aurez un repository créé, {votre nom d'utilisateur}/glpi-créé à partir de glpi-project/glpi.
 
 Ajouter votre fork (sur Github) comme référence distante de votre répertoire cloné (localement) :
 
@@ -154,16 +152,17 @@ Ajouter votre fork (sur Github) comme référence distante de votre répertoire 
 
    $ git remote add my_fork https://github.com/{your user name}/glpi.git
 
-You can replace `my_fork` with what you want but `origin` (just remember it); and you will find your fork URL from the Github UI.
+*You can replace `my_fork` with what you want but `origin` (just remember it); and you will find your fork URL from the Github UI.*
+
 Vous pouvez remplacer `my_fork` par ce que vous voulez, mais par l’ origine (rappelez-vous-en); et vous trouverez l'URL de votre fork dans l'interface utilisateur de Github.
 
-Une bonne pratique de base en utilisant Git est de créer une branche pour tout ce que vous voulez faire. nous en parlerons dans les sections ci-dessous. N'oubliez pas que vous allez publier vos branches sur votre fork pour pouvoir proposer vos modifications.
+Une bonne pratique de base en utilisant Git est de créer une branche pour tout ce que vous voulez faire. Nous en parlerons dans les sections ci-dessous. N'oubliez pas que vous allez publier vos branches sur votre fork pour pouvoir proposer vos modifications.
 
 Lorsque vous ouvrez une nouvelle pull request, celle-ci sera examinée par un ou plusieurs membres de la communauté. Si vous êtes invité à apporter des modifications, il vous suffit de valider à nouveau dans votre branche locale, de commiter à nouveau et c'est tout. La demande de pull request sera automatiquement mise à jour.
 
 .. note::
 
-   C'est à vous à gérer votre fork et le garder à jour. Je vous conseillerai de garder les branches d'origine (telles que ``master`` ou ``x.y/bugfixes``) pointant sur le référentiel en amont.
+   C'est à vous de gérer votre fork et le garder à jour. Je vous conseillerai de garder les branches d'origine (telles que ``master`` ou ``x.y/bugfixes``) pointant sur le référentiel de GLPI.
 
    De cette façon, il vous suffira de mettre à jour la branche à partir du référentiel principal avant de faire quoi que ce soit.
 
@@ -192,12 +191,12 @@ Généralement, la toute première étape d'un bogue consiste à `renseigner un 
 
 La dernière étape consiste à créer un PR pour que vos modifications soient apportées au projet. Vous trouverez le bouton permettant de le faire en visitant votre page fork ou même la page principale de github du projet.
 
-Rappelez-vous simplement que nous travaillons sur un correctif, qui devrait atteindre la branche `bugfixes` ; la création d'un PR va probablement vous proposer de fusionner avec la branche `master`  et peut-être vous dira-t-il qu'il y a des conflits, ou de nombreux commits dont vous ignorez l'existence... Réglez simplement la branche de base sur les bons correctifs et cela devrait être bon.
+Rappelez-vous simplement que nous travaillons sur un correctif qui devrait atteindre la branche `bugfixes` ; la création d'un PR va probablement vous proposer de fusionner avec la branche `master`  et peut-être vous dira-t-il qu'il y a des conflits, ou de nombreux commits dont vous ignorez l'existence... Réglez simplement la branche de base sur les bons correctifs et cela devrait être bon.
 
 fonctionnalités
 ^^^^^^^^^^^^^^^
 
-Avant de commencer tout travail sur une fonctionnalité, il est certain que la communauté en a discuté. Ouvrez - s'il n'existe pas encore - un ticket avec votre proposition détaillée. Pour les fonctionnalités techniques, vous pouvez travailler directement sur github; mais pour les propositions de travail, vous devriez jeter un coup d'œil à notre `plateforme de propositions de fonctionnalités <http://glpi.userecho.com/>`_.
+Avant de commencer tout travail sur une fonctionnalité, il est très probable que la communauté en a déjà discuté. Ouvrez - s'il n'existe pas encore - un ticket avec votre proposition détaillée. Pour les fonctionnalités techniques, vous pouvez travailler directement sur github mais pour les propositions de travail, vous devriez jeter un coup d'œil à notre `plateforme de propositions de fonctionnalités <http://glpi.userecho.com/>`_.
 
 Si vous souhaitez ajouter une nouvelle fonctionnalité, vous devrez travailler sur la branche principale et créer une branche locale portant le nom de votre choix, préfixée de `feature/`.
 
@@ -209,7 +208,7 @@ Si vous souhaitez ajouter une nouvelle fonctionnalité, vous devrez travailler s
    $ git co feature/my-killler feature
 
 
-Vous remarquerez que nous ne changeons pas de branche à la première étape? C'est simplement parce que `master` est la branche par défaut et donc celle que vous allez définir sur le clonage juste après. À ce stade, vous travaillez sur une branche locale uniquement appelée `feature/my-killer-feature`. Vous pouvez maintenant travailler et commiter (aussi souvent que vous le souhaitez).
+Vous remarquerez que nous ne changeons pas de branche à la première étape. C'est simplement parce que `master` est la branche par défaut et donc celle que vous allez définir sur le clonage juste après. À ce stade, vous travaillez sur une branche locale uniquement appelée `feature/my-killer-feature`. Vous pouvez maintenant travailler et commiter (aussi souvent que vous le souhaitez).
 
 À la fin, vous voudrez que vos modifications soient apportées au projet. Donc, il suffit de pousser la branche sur votre fork distant :
 
@@ -221,9 +220,9 @@ Vous remarquerez que nous ne changeons pas de branche à la première étape? C'
 Commit des messages
 ^^^^^^^^^^^^^^^^^^^
 
-Il existe plusieurs bonnes pratiques concernant les messages de validation, mais ceci est assez simple:
+Il existe plusieurs bonnes pratiques concernant les messages de commit, mais ceci est assez simple :
 
-* le message de validation peut faire référence à un ticket existant, le cas échéant,
+* le message de commit peut faire référence à un ticket existant, le cas échéant,
 
   * il suffit de faire référence à un ticket avec des mots clés tels que ``refs #1234`` or ``see #1234"``,
   * fermer automatiquement un ticket quand le commit sera fusionné avec des mots clés comme ``closes #1234`` or ``fixes #1234``,
@@ -233,8 +232,8 @@ Il existe plusieurs bonnes pratiques concernant les messages de validation, mais
 
 .. _3rd_party_libs:
 
-Third party libraries
-^^^^^^^^^^^^^^^^^^^^^
+Les bibliothèques tierces
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Les bibliothèques tierces sont gérées à l'aide de `l'outil composer <http://getcomposer.org>`_.
 
@@ -244,7 +243,7 @@ Pour installer des dépendances existantes, installez simplement composer à par
 
    $ composer install
 
-Pour ajouter une nouvelle bibliothèque, vous aurez probablement trouvé la ligne de commande dans la documentation de la bibliothèque qui doit ressembler à quelque chose comme:
+Pour ajouter une nouvelle bibliothèque, vous aurez probablement trouvé la ligne de commande dans la documentation de la bibliothèque qui doit ressembler à quelque chose comme :
 
 
 .. code-block:: bash
@@ -258,12 +257,11 @@ Tests unitaires (et tests fonctionnels)
 
 .. note::
 
-   Un mot pour les puristes… Dans GLPI, il existe des tests unitaires et fonctionnels; sans réelle distinction ;-)
+   Un mot pour les puristes… Dans GLPI, il existe des tests unitaires et fonctionnels, sans réelle distinction ;-)
 
-We use the `atoum unit tests framework <http://atoum.org>`_; see `GLPI website if you wonder why <http://glpi-project.org/spip.php?breve375>`_.
 Nous utilisons `le framework de tests unitaires atoum <http://atoum.org>`_. Consultez le `site Web de GLPI si vous vous demandez pourquoi <http://glpi-project.org/spip.php?breve375>`_.
 
-La documentation d’`atoum` est disponible à l’ adresse suivante : http://docs.atoum.org
+La documentation d’`atoum` est disponible à l’adresse suivante : http://docs.atoum.org
 
 .. warning::
 
@@ -274,7 +272,6 @@ Isolation des tests
 
 Les tests doivent être exécutés dans un environnement isolé. Par défaut, atoum utilise un mode simultané qui lance des tests dans un environnement multi-thread. Bien qu'il soit possible de contourner cela, cela ne devrait pas être fait. Voir http://docs.atoum.org/en/latest/engine.html.
 
-For technical reasons (mainly because of the huge session usage), GLPI unit tests are actually limited to one only thread while running the whole suite; but while developing, the behavior should only be changed if this is really needed.
 Pour des raisons techniques (principalement en raison de l'utilisation important de la session), les tests unitaires GLPI sont en réalité limités à un seul thread lors de l'exécution de la suite complète mais en développant, le comportement ne devrait être changé que si cela est vraiment nécessaire.
 
 Les types
@@ -285,7 +282,7 @@ Contrairement à PHPUnit, atoum est très strict sur les types. Cela a vraiment 
 Base de données
 ^^^^^^^^^^^^^^^
 
-Chaque classe qui teste quelque chose dans la base de données doit en hériter ``\DbTestCase``. Cette classe fournit des helpers (comme les methodes ``login()`` ou ``setEntity()``); et il fait aussi de la préparation et du nettoyage.
+Chaque classe qui teste quelque chose dans la base de données doit hériter de ``\DbTestCase``. Cette classe fournit des helpers (comme les methodes ``login()`` ou ``setEntity()``) et elle fait aussi de la préparation et du nettoyage.
 
 Chaque objet ``CommonDBTM`` ajouté à la base de données avec la méthode ``add()`` sera automatiquement supprimé après la méthode de test. Si vous souhaitez toujours créer un nouveau type d'objet, vous pouvez utiliser les méthodes ``beforeTestMethod()`` ou ``setUp()``.
 
@@ -293,12 +290,12 @@ Chaque objet ``CommonDBTM`` ajouté à la base de données avec la méthode ``ad
 
    Si vous utilisez la méthode ``setUp()``, n'oubliez pas d'appeler ``parent::setUp()``!
 
-Certaines données amorcées sont fournies (seront insérées lors du premier test); elles peuvent être utilisées pour vérifier les comportements par défaut ou faire des requêtes, **mais vous ne devriez jamais changer ces données !** Cela conduit à des résultats de tests imprévisibles.
+Certaines données amorcées sont fournies (seront insérées lors du premier test). Elles peuvent être utilisées pour vérifier les comportements par défaut ou faire des requêtes, **mais vous ne devriez jamais changer ces données !** Cela conduirait à des résultats de tests imprévisibles.
 
 Déclaration de variables
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-Lorsque vous utilisez une propriété qui n'a pas été déclarée, vous aurez des erreurs qui peuvent être assez difficiles à comprendre. N'oubliez pas de toujours déclarer la propriété que vous utilisez!
+Lorsque vous utilisez une propriété qui n'a pas été déclarée, vous aurez des erreurs qui peuvent être assez difficiles à comprendre. N'oubliez pas de toujours déclarer la propriété que vous utilisez !
 
 .. code-block:: php
 
@@ -320,7 +317,7 @@ Vous pouvez installer atoum à partir de composer (il suffit de lancer ``compose
 Il existe deux répertoires pour les tests:
 
 
-* ``tests/units`` pour les principaux tests de base;
+* ``tests/units`` pour les principaux tests de base,
 * ``tests/api`` pour les tests API.
 
 Vous pouvez choisir d'exécuter des tests sur un répertoire entier ou sur n'importe quel fichier. Vous devez spécifier un fichier d'amorçage à chaque fois :
@@ -332,7 +329,7 @@ Vous pouvez choisir d'exécuter des tests sur un répertoire entier ou sur n'imp
    $ atoum -bf tests/bootstrap.php -f tests/units/Html.php
 
 
-Si vous souhaitez exécuter la suite de tests d'API, vous devez exécuter un serveur de développement:
+Si vous souhaitez exécuter la suite de tests d'API, vous devez exécuter un serveur de développement :
 
 .. code-block:: bash
 
@@ -346,9 +343,8 @@ Exécuter `atoum` sans argument vous montrera les options possibles. Les plus im
 * ``-f`` exécuter des tests sur un fichier autonome,
 * ``--debug`` pour obtenir des informations supplémentaires en cas de problème,
 * ``-mcn`` limite le nombre d'exécutions simultanées. Ceci est malheureusement obligatoire pour exécuter toute la suite de tests maintenant :/,
-* ``-ncc`` dne pas générer de couverture de code,
+* ``-ncc`` ne pas générer de couverture de code,
 * ``--php`` changer l'exécutable PHP à utiliser,
 * ``-l`` mode "en boucle.
 
-Note that if you do not use the `-ncc` switch; coverage will be generated in the `tests/code-coverage/` directory.
 Notez que si vous n'utilisez pas l'option `-ncc` ; la couverture sera générée dans le répertoire `tests/code-coverage/`.
