@@ -67,7 +67,6 @@ Plusieurs conditions dans plusieurs lignes identifiées
 Tableaux
 --------
 
-Arrays must be declared using the short notation syntax (``[]``), long notation (``array()``) is forbidden.
 Les tableaux doivent être déclarés en utilisant la syntaxe de notation courte (``[]``), la notation longue (``array()``) est interdite.
 
 vrai, faux et nul
@@ -103,7 +102,7 @@ La balise PHP de fermeture ``?>`` doit être évitée sur les fichiers PHP compl
 Fonctions
 ---------
 
-Les noms de fonction doivent être écrits en *camelCaps*:
+Les noms de fonction doivent être écrits en *camelCaps* :
 
 .. code-block:: php
 
@@ -123,7 +122,7 @@ S'il s'agit de l'ajout d'une fonction parent
    <?php
    function getMenuContent()
 
-S'il s'agit d'une nouvelle fonction, ajoutez dans le bloc commentaires (voir la section `Commentaires`_ ):
+S'il s'agit d'une nouvelle fonction, ajoutez dans le bloc commentaires (voir la section `Commentaires`_ ) :
 
 .. code-block:: php
 
@@ -185,7 +184,7 @@ GLPI n'utilise pas les `espaces de noms PHP <http://php.net/manual/en/language.n
 
 Remarque : même si GLPI n’utilise pas d’espaces de noms, certaines bibliothèques les utilisent. Vous devrez vous en occuper. Vous pouvez également, si vous le souhaitez, utiliser des espaces de noms pour appeler des objets PHP.
 
-Par exemple, le code suivant:
+Par exemple, le code suivant :
 
 .. code-block:: php
 
@@ -199,7 +198,7 @@ Par exemple, le code suivant:
    }
 
 
-Pourrait aussi être écrit comme ceci (voir le ``\``):
+Pourrait aussi être écrit comme ceci (voir le ``\``) :
 
 .. code-block:: php
 
@@ -273,7 +272,7 @@ Une autre manière d’être ajoutée si la fonction l'exige.
 
 Reportez-vous au `site Web PHPDocumentor <https://phpdoc.org/docs/latest>`_ pour obtenir plus d'informations sur la documentation. La `dernière documentation de l'API GLPI <https://forge.glpi-project.org/projects/glpi/embedded/index.html>`_ est également disponible en ligne.
 
-Veuillez suivre l'ordre défini ci-dessous:
+Veuillez suivre l'ordre défini ci-dessous :
 
 
  #. Description,
@@ -295,14 +294,14 @@ Si votre paramètre peut être de différents types, vous pouvez les lister sép
 
 Tous les noms de paramètres et la description doivent être alignés verticalement sur le plus long (plus d'un caractère); voir l'exemple ci-dessus.
 
-Méthode de substitution: @inheritDoc? @voir? docblock? pas de docblock?
+Méthode de substitution : @inheritDoc? @voir? docblock? pas de docblock?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Il y a beaucoup de questions sur la manière de documenter une méthode enfant dans une classe enfant.
 
 
 Beaucoup d'éditeurs utilisent le tag ``{@inheritDoc}`` sans rien d'autre. **Ce n'est pas bon**. Ce tag *inline* est source de confusion pour de nombreux utilisateurs. Pour plus de détails, voir `PHPDocumentor documentation about it <https://www.phpdoc.org/docs/latest/guides/inheritance.html#the-inheritdoc-tag>`_.
-L'utilisation de cette balise n'est pas interdite, mais assurez-vous de l'utiliser correctement, ou tout simplement de l'éviter. Un exemple d'utilisation:
+L'utilisation de cette balise n'est pas interdite, mais assurez-vous de l'utiliser correctement, ou tout simplement de l'éviter. Un exemple d'utilisation :
 
 .. code-block:: php
 
@@ -334,7 +333,7 @@ L'utilisation de cette balise n'est pas interdite, mais assurez-vous de l'utilis
 
 
 Nous constatons souvent que l’utilisation de la balise ``@see`` fait référence à la méthode parente. **C'est faux**. La balise ``@see`` est conçue pour faire référence à une autre méthode qui aiderait à comprendre celle-ci, pas pour faire référence à son parent (vous pouvez également consulter la `documentation de PHPDocumentor <https://www.phpdoc.org/docs/latest/references/phpdoc/tags/see.html>`_ à ce sujet. Lors de la génération, la classe et les méthodes parentes sont automatiquement découvertes. Un lien vers le parent sera automatiquement ajouté.
-Un exemple d'utilisation:
+Un exemple d'utilisation :
 
 .. code-block:: php
 
@@ -443,17 +442,16 @@ Fichiers
 --------
 
 * Nom en minuscule.
-* Longueur de ligne maximale: 100 caractères
-* Indentation: 3 espaces
+* Longueur de ligne maximale : 100 caractères
+* Indentation : 3 espaces
 
 
 Requêtes en base de données
 ---------------------------
 
 * Les requêtes doivent être écrites sur plusieurs lignes, une instruction par ligne.
-* All SQL words must be **UPPER case**.
 * Tous les mots SQL doivent être en **majuscules**.
-* Pour MySQL, tous les éléments doivent être protégés par  l'apostrophe inversée (nom de la table, nom du champ, condition),
+* Pour MySQL, tous les éléments doivent être protégés par  l'apostrophe inversée ````` (nom de la table, nom du champ, condition),
 * Toutes les valeurs de variables, même les nombres entiers doivent être entre guillemets simples
 
 .. code-block:: php
