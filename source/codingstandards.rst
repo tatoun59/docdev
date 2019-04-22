@@ -1,11 +1,11 @@
-Coding standards
+Règles de codage
 ================
 
 Indentation
 -----------
 
-- 3 spaces
-- Max line width: 100
+- 3 espaces
+- Longueur maximale de la ligne : 100
 
 .. code-block:: php
 
@@ -16,22 +16,23 @@ Indentation
        // level 1
    // base level
 
-Spacing
--------
+Espaceement
+-----------
 
-We've adopted "french spacing" rules in the code. The rule is:
+Nous avons adopté les règles «d'espacement français» dans le code. La règle est la suivante :
 
-* for *simple* punctuation (``,``, ``.``): use *one space after* the punctuation sign
-* for *double* punctuation (``!``, ``?``, ``:``): use *one space after and one space before* the punctuation sign
-* for *opening* punctuation (``(``, ``{``, ``[``): use *one space before* the punctuation sign
-* for *closing* punctuation ( ``)``, ``}``, ``]``): use *one space after* the punctuation sign, excepted for line end, when followed by a semi-colon (``;``)
+* pour une ponctuation *simple* (``,``, ``.``) : utilisez un espace après le signe de ponctuation
+* pour une ponctuation *double* (``!``, ``?``, ``:``) : utiliser un espace après et un espace avant le signe de ponctuation
+* pour une ponctuation *d'ouverture* (``(``, ``{``, ``[``): utiliser *un espace avant* le signe de ponctuation
+* pour une ponctuation *de fermeture* ( ``)``, ``}``, ``]``) : utiliser *un espace après* le signe de ponctuation, à l'exception d'une fin de ligne, lorsqu'elle est suivie par un point-virgule ( ;)
 
-Of course, this rules only aplies on the source code, not on the strings (translatable strings, comments, ...)!
+Bien sûr, cela ne concerne que le code source, pas les chaînes (chaînes traduisibles, commentaires,...) !
 
-Control structures
-------------------
+Structures de contrôle
+----------------------
 
-Multiple conditions in several idented lines
+Plusieurs conditions dans plusieurs lignes identifiées
+
 
 .. code-block:: php
 
@@ -62,42 +63,47 @@ Multiple conditions in several idented lines
          echo "Default Case";
    }
 
-Arrays
-------
+
+Tableaux
+--------
 
 Arrays must be declared using the short notation syntax (``[]``), long notation (``array()``) is forbidden.
+Les tableaux doivent être déclarés en utilisant la syntaxe de notation courte (``[]``), la notation longue (``array()``) est interdite.
 
-true, false and null
---------------------
+vrai, faux et nul
+-----------------
 
-``true``, ``false`` and ``null`` constants mut be lowercase.
+Les constantes ``true``, ``false`` et ``null`` doivent être en minuscules.
 
-Including files
+
+Fichiers inclus
 ---------------
 
-Use ``include_once`` in order to include the file once and to raise warning if file does not exists:
+Utilisez ``include_once`` pour inclure le fichier une fois et émettre un avertissement si le fichier n'existe pas :
 
 .. code-block:: php
 
    include_once GLPI_ROOT."/inc/includes.php";
 
 
-PHP tags
---------
+Balises PHP
+-----------
 
-Short tag (``<?``) is not allowed; use complete tags (``<?php``).
+La balise courte (``<?``) n'est pas autorisée. Utilisez des balises complètes (``<?php``).
+
 
 .. code-block:: php
 
    <?php
    // code
 
-The PHP closing tag ``?>`` must be avoided on full PHP files (so in most of GLPI's files!).
+La balise PHP de fermeture ``?>`` doit être évitée sur les fichiers PHP complets (donc dans la plupart des fichiers de GLPI !).
 
-Functions
+
+Fonctions
 ---------
 
-Function names must be written in *camelCaps*:
+Les noms de fonction doivent être écrits en *camelCaps*:
 
 .. code-block:: php
 
@@ -106,40 +112,41 @@ Function names must be written in *camelCaps*:
       //do something here!
    }
 
-Space after opening parenthesis and before closing parenthesis are forbidden. For parematers which have a default value; add a space before and after the equel sign.
+Les espaces après une parenthèse ouvrante ou avant une parenthèse fermante sont interdits. Pour les paramètres qui ont une valeur par défaut, ajoutez un espace avant et après le signe égal.
 
-If parameters add block doc for these parameters, please see the `Comments`_ section for any example.
+Si des paramètres sont ajoutés à un bloc de commentaires, veuillez vous reporter à la section `Comments`_ pour un exemple.
 
-If function from parent add
+S'il s'agit de l'ajout d'une fonction parent
 
 .. code-block:: php
 
    <?php
    function getMenuContent()
 
-If it's a new function, add in block doc (see the `Comments`_ section):
+S'il s'agit d'une nouvelle fonction, ajoutez dans le bloc commentaires (voir la section `Commentaires`_ ):
 
 .. code-block:: php
 
    @since version 9.1
 
-Call static methods
-^^^^^^^^^^^^^^^^^^^
+Appeler des méthodes statiques
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-================= ===========
-Function location How to call
-================= ===========
-class itself      ``self::theMethod()``
-parent class      ``parent::theMethod()``
-another class     ``ClassName::theMethod()``
-================= ===========
+=========================== ================
+Localisation de la fonction Comment appeler
+=========================== ================
+class elle-même             ``self::theMethod()``
+parent class                ``parent::theMethod()``
+une autre classs            ``ClassName::theMethod()``
+=========================== ================
 
-Static or Non static?
-^^^^^^^^^^^^^^^^^^^^^
+Statique ou non statique ?
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Some methods in the source code as `declared as static <http://php.net/manual/fr/language.oop5.static.php>`_; some are not.
+Certaines méthodes du code source sont `déclarées comme statiques <http://php.net/manual/fr/language.oop5.static.php>`_ et d'autres pas.
 
-For sure, you cannot make static calls on a non static method. In order to call such a method, you will have to get an object instance, and the call the method on it:
+
+Bien sûr, vous ne pouvez pas effectuer d'appels statiques avec une méthode non statique. Pour appeler une telle méthode, vous devez obtenir une instance d'objet et appeler la méthode dessus :
 
 .. code-block:: php
 
@@ -148,23 +155,25 @@ For sure, you cannot make static calls on a non static method. In order to call 
    $object = new MyObject();
    $object->nonStaticMethod();
 
-It may be different calling static classes. In that case; you can either:
+Il peut y avoir différentes façons d'appeler des classes statiques. Dans ce cas. Vous pouvez :
 
-* call statically the method from the object; like ``MyObject::staticMethod()``,
-* call statically the method from an object instance; like ``$object::staticMethod()``,
-* call non statically the method from an object instance; like ``$object->staticMethod()``.
-* use `late static building <http://php.net/manual/en/language.oop5.late-static-bindings.php>`_; like ``static::staticMethod()``.
 
-When you do not have any object instance yet; the first solution is probably the best one. No need to instanciate an object to just call a static method from it.
+* appeler statiquement la méthode depuis l'objet comme ``MyObject::staticMethod()``,
+* appeler statiquement la méthode à partir d'une instance d'objet comme ``$object::staticMethod()``,
+* appeler de manière non statique la méthode à partir d'une instance d'objet comme ``$object->staticMethod()``.
+* utiliser un `late static building <http://php.net/manual/en/language.oop5.late-static-bindings.php>`_ comme ``static::staticMethod()``.
 
-On the other hand; if you already have an object instance; you should better use any of the solution but the late static binding. That way; you will save performances since this way to go do have a cost.
+Quand vous n'avez pas encore d'instance d'objet, la première solution est probablement la meilleure. Pas besoin d'instancier un objet pour simplement appeler une méthode statique.
+
+Toutefois, si vous avez déjà une instance d'objet, il est préférable d'utiliser n'importe quelle solution plutôt de la derniere. Enfin, vous économiserez des performances car cette façon de faire a un coût.
 
 Classes
 -------
 
-Class names must be written in `CamelCase`:
+Les noms de classe doivent être écrits dans CamelCase :
 
-GLPI do not use `PHP namespaces <http://php.net/manual/en/language.namespaces.php>`_ right now; so be careful when creating new classes to take a name that does not exists yet.
+
+GLPI n'utilise pas les `espaces de noms PHP <http://php.net/manual/en/language.namespaces.php>`_ pour le moment. soyez donc prudent lorsque vous créez de nouvelles classes pour prendre un nom qui n'existe pas encore.
 
 .. code-block:: php
 
@@ -174,9 +183,9 @@ GLPI do not use `PHP namespaces <http://php.net/manual/en/language.namespaces.ph
    }
 
 
-Note: even if GLPI does not use namespaces, some libs does, you will have to take care of that. You can also if you wish use namespaces for PHP objects call.
+Remarque : même si GLPI n’utilise pas d’espaces de noms, certaines bibliothèques les utilisent. Vous devrez vous en occuper. Vous pouvez également, si vous le souhaitez, utiliser des espaces de noms pour appeler des objets PHP.
 
-For example, the folloging code:
+Par exemple, le code suivant:
 
 .. code-block:: php
 
@@ -190,7 +199,7 @@ For example, the folloging code:
    }
 
 
-Could also be written as (see the ``\``):
+Pourrait aussi être écrit comme ceci (voir le ``\``):
 
 .. code-block:: php
 
@@ -203,13 +212,14 @@ Could also be written as (see the ``\``):
       ...
    }
 
-Variables and Constants
+Variables et Constantes
 -----------------------
 
-* Variable names must be as descriptive and as short as possible, stay clear and concise.
-* In case of multiple words, use the ``_`` separator,
-* Variables must be **lower case**,
-* Global variables and constants must be **UPPER case**.
+* Les noms de variables doivent être aussi descriptifs que possible, et rester clairs et concis.
+* En cas de mots multiples, utilisez le séparateur ``_``,
+* Les variables doivent être en **minuscules**,
+* Les variables globales et les constantes doivent être des **majuscules**.
+
 
 .. code-block:: php
 
@@ -225,14 +235,14 @@ Variables and Constants
    
    $CFG_GLPI = array();
 
-Comments
---------
+commentaires
+------------
 
-To be more visible, don't put inline block comments into ``/* */`` but comment each line with ``//``. Put docblocks comments into ``/** */``.
+Pour être plus visible, ne mettez pas de commentaires de bloc ``/* */`` mais commentez chaque ligne avec ``//``. Mettez les commentaires docblocks dans  ``/** */``.
 
-Each function or method must be documented, as well as all its parameters (see `Variables types`_ below), and its return.
+Chaque fonction ou méthode doit être documentée, ainsi que tous ses paramètres (voir `Types de variables`_ ci-dessous) et son retour.
 
-For each method or function documentation, you'll need at least to have a description, the version it was introduced, the parameters list, the return type; each blocks separated with a blank line. As an example, for a void function:
+Pour chaque documentation de méthode ou de fonction, vous devez au moins avoir une description, la version qui a été introduite, la liste des paramètres, le type de retour. Chaque bloc est séparé par une ligne vide. Par exemple, pour une fonction void:
 
 .. code-block:: php
 
@@ -258,14 +268,16 @@ For each method or function documentation, you'll need at least to have a descri
       //[...]
    }
 
-Some other informations way be added; if the function requires it.
+Une autre manière d’être ajoutée si la fonction l'exige.
 
-Refer to the `PHPDocumentor website <https://phpdoc.org/docs/latest>`_ to get more informations on documentation. The `latest GLPI API documentation <https://forge.glpi-project.org/projects/glpi/embedded/index.html>`_ is also available online.
 
-Please follow the order defined below:
+Reportez-vous au `site Web PHPDocumentor <https://phpdoc.org/docs/latest>`_ pour obtenir plus d'informations sur la documentation. La `dernière documentation de l'API GLPI <https://forge.glpi-project.org/projects/glpi/embedded/index.html>`_ est également disponible en ligne.
+
+Veuillez suivre l'ordre défini ci-dessous:
+
 
  #. Description,
- #. Long description, if any,
+ #. Description longue, le cas échéant
  #. `@deprecated`.
  #. `@since`,
  #. `@var`,
@@ -275,21 +287,22 @@ Please follow the order defined below:
  #. `@throw`,
  #. `@todo`,
 
-Parameters documentation
-^^^^^^^^^^^^^^^^^^^^^^^^
+Documentation des paramètres
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Each parameter must be documented in its own line, begining with the ``@param`` tag, followed by the `Variables types`_, followed by the param name (``$param``), and finally with the description itself.
-If your parameter can be of different types, you can list them separated with a ``|`` or you can use the ``mixed`` type; it's up to you!
+Chaque paramètre doit être documenté dans sa propre ligne, en commençant par la balise @param, suivie des `types de Variables`_ , suivie du nom param (``$param``) et enfin de la description elle-même. 
+Si votre paramètre peut être de différents types, vous pouvez les lister séparés d'un  ``|`` ou vous pouvez utiliser le type ``mixed``.
 
-All parameters names and description must be aligned vertically on the longest (plu one character); see the above example.
+Tous les noms de paramètres et la description doivent être alignés verticalement sur le plus long (plus d'un caractère); voir l'exemple ci-dessus.
 
-Override method: @inheritDoc? @see? docblock? no docblock?
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Méthode de substitution: @inheritDoc? @voir? docblock? pas de docblock?
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-There are many question regarding the way to document a child method in a child class.
+Il y a beaucoup de questions sur la manière de documenter une méthode enfant dans une classe enfant.
 
-Many editors use the ``{@inheritDoc}`` tag without anything else. **This is wrong**. This *inline* tag is confusing for many users; for more details, see the `PHPDocumentor documentation about it <https://www.phpdoc.org/docs/latest/guides/inheritance.html#the-inheritdoc-tag>`_.
-This tag usage is not forbidden, but make sure to use it properly, or just avoid it. An usage exemple:
+
+Beaucoup d'éditeurs utilisent le tag ``{@inheritDoc}`` sans rien d'autre. **Ce n'est pas bon**. Ce tag *inline* est source de confusion pour de nombreux utilisateurs. Pour plus de détails, voir `PHPDocumentor documentation about it <https://www.phpdoc.org/docs/latest/guides/inheritance.html#the-inheritdoc-tag>`_.
+L'utilisation de cette balise n'est pas interdite, mais assurez-vous de l'utiliser correctement, ou tout simplement de l'éviter. Un exemple d'utilisation:
 
 .. code-block:: php
 
@@ -319,8 +332,9 @@ This tag usage is not forbidden, but make sure to use it properly, or just avoid
          [...]
       }
 
-Something we can see quite often is just the usage of the ``@see`` tag to make reference to the parent method. **This is wrong**. The ``@see`` tag is designed to reference another method that would help to understand this one; not to make a reference to its parent (you can also take a look at `PHPDocumentor documentation about it <https://www.phpdoc.org/docs/latest/references/phpdoc/tags/see.html>`_. While generating, parent class and methods are automaticaly discovered; a link to the parent will be automatically added.
-An usage example:
+
+Nous constatons souvent que l’utilisation de la balise ``@see`` fait référence à la méthode parente. **C'est faux**. La balise ``@see`` est conçue pour faire référence à une autre méthode qui aiderait à comprendre celle-ci, pas pour faire référence à son parent (vous pouvez également consulter la `documentation de PHPDocumentor <https://www.phpdoc.org/docs/latest/references/phpdoc/tags/see.html>`_ à ce sujet. Lors de la génération, la classe et les méthodes parentes sont automatiquement découvertes. Un lien vers le parent sera automatiquement ajouté.
+Un exemple d'utilisation:
 
 .. code-block:: php
 
@@ -349,41 +363,45 @@ An usage example:
       return $this->addType('myType', $value);
    }
 
-Finally, should I add a docblock, or nothing?
+Enfin, dois-je ajouter un docblock ou rien?
 
-PHPDocumentor and various tools will just use parent docblock verbatim if nothing is specified on child methods. So, if the child method acts just as its parent (extending an abstract class, or some super class like ``CommonGLPI`` or ``CommonDBTM``); you may just omit the docblock entirely. The alternative is to copy paste parent docblock entirely; but that way, it would be required to change all children docblocks when parent if changed.
 
-Variables types
----------------
+PHPDocumentor et divers outils n'utiliseront que docblock parent si rien n'est spécifié sur les méthodes enfant. Donc, si la méthode enfant agit comme son parent (étendre une classe abstraite, ou une super classe telle que ``CommonGLPI`` ou ``CommonDBTM``); vous pouvez simplement omettre complètement le docblock. L'alternative consiste à copier-coller docblock parent entièrement, mais de cette façon, il serait nécessaire de changer tous les docblocks enfants lorsque le parent sera changé.
 
-Variables types for use in DocBlocks for Doxygen:
+
+Types de variables
+------------------
+
+Types de variables à utiliser dans DocBlocks pour Doxygen :
+
+
 
 ========= ===========
  Type     Description
 ========= ===========
-mixed     A variable with undefined (or multiple) type
-integer   Integer type variable (whole number)
-float     Float type (point number)
-boolean   Logical type (true or false)
-string    String type (any value in ``""`` or ``' '``)
-array     Array type
-object    Object type
-ressource Resource type (as returned from ``mysql_connect`` function)
+mixed     Une variable de type indéfini (ou multiple)
+integer   Variable de type entier (nombre entier)
+float     Type de flotteur (numéro de point)
+boolean   Type logique (vrai ou faux)
+string    Type de chaîne (n'importe quelle valeur dans ``""`` ou ``' '``)
+array     Type tableau
+object    Type objet
+ressource Type de ressource (tel que renvoyé par la fonction ``mysql_connect``)
 ========= ===========
 
-Inserting comment in source code for doxygen.
-Result : full doc for variables, functions, classes...
+Insérer un commentaire dans le code source de doxygen. 
+Résultat : doc complet pour les variables, fonctions, classes...
 
 
-Quotes / double quotes
-----------------------
+Guillemets simples et doubles
+-----------------------------
 
-* You must use single quotes for indexes, constants declaration, translations, ...
-* Use double quote in translated strings
-* When you have to use tabulation character (``\t``), carriage return (``\n``) and so on, you should use double quotes.
-* For performances reasons since PHP7, you may avoid strings concatenation.
+* Vous devez utiliser des guillemets simples pour les index, la déclaration des constantes, les traductions, ...
+* Utilisez les guillemets doubles dans les chaînes traduites
+* Lorsque vous devez utiliser le caractère de tabulation (``\t``), le retour chariot (``\n``), etc., vous devez utiliser des guillemets doubles.
+* Pour des raisons de performances depuis PHP7, vous pouvez éviter la concaténation de chaînes.
 
-Examples:
+Exemples :
 
 .. code-block:: php
 
@@ -421,20 +439,22 @@ Examples:
    }
 
 
-Files
------
+Fichiers
+--------
 
-* Name in lower case.
-* Maximum line length: 100 characters
-* Indentation: 3 spaces
+* Nom en minuscule.
+* Longueur de ligne maximale: 100 caractères
+* Indentation: 3 espaces
 
-Database queries
-----------------
 
-* Queries must be written onto several lines, one statement item by line.
+Requêtes en base de données
+---------------------------
+
+* Les requêtes doivent être écrites sur plusieurs lignes, une instruction par ligne.
 * All SQL words must be **UPPER case**.
-* For MySQL, all item based must be slash protected (table name, field name, condition),
-* All values from variable, even integer should be single quoted
+* Tous les mots SQL doivent être en **majuscules**.
+* Pour MySQL, tous les éléments doivent être protégés par  l'apostrophe inversée (nom de la table, nom du champ, condition),
+* Toutes les valeurs de variables, même les nombres entiers doivent être entre guillemets simples
 
 .. code-block:: php
 
@@ -453,18 +473,20 @@ Database queries
                    (`itemtype`, `items_id`, `type`, `date`) // put field's names to avoid mistakes when names of fields change
              VALUE ('contract', '5', '2', NOW())";
 
-Checking standards
-------------------
+Vérification des normes
+-----------------------
 
-In order to check some stabdards are respected, we provide some custom `PHP CodeSniffer <http://pear.php.net/package/PHP_CodeSniffer>`_ rules. From the GLPI directory, just run:
+Afin de vérifier que certaines règles soient respectées, nous fournissons des règles `PHP CodeSniffer <http://pear.php.net/package/PHP_CodeSniffer>`_ personnalisées . Depuis le répertoire GLPI, lancez simplement:
 
 .. code-block:: bash
 
    phpcs --standard=vendor/glpi-project/coding-standard/GlpiStandard/ inc/ front/ ajax/ tests/
 
-If the above command does not provide any output, then, all is OK :)
+Si la commande ci-dessus ne fournit aucune sortie, tout va bien :)
 
-An example error output would looks like:
+
+Un exemple d'erreur en sortie ressemblerait à ceci:
+
 
 .. code-block:: bash
 
