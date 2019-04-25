@@ -1,208 +1,232 @@
-Main framework objects
-----------------------
+Framework principal des objects
+-------------------------------
 
-GLPI contains numerous classes; but there are a few common objects you'd have to know about. All GLPI classes are in the ``inc`` directory.
+GLPI contient de nombreuses classes mais il y a quelques objets communs que vous devez connaître. Toutes les classes GLPI sont dans le répertoire ``inc``.
 
 CommonGLPI
 ^^^^^^^^^^
 
-This is **the** main GLPI object, most of GLPI or Plugins class inherit from this one, directly or not. The class is in the ``inc/commonglpi.class.php`` file.
+C'est **le principal** objet GLPI. La plupart des classes de GLPI ou des Plugins héritent de celui-ci, directement ou non. La classe est dans le fichier ``inc/commonglpi.class.php``.
 
-This object will help you to:
+Cet objet vous aidera à :
 
-* manage item type name,
-* manage item tabs,
-* manage item menu,
-* do some display,
-* get URLs (form, search, ...),
+* gérer le nom du type d'élément,
+* gérer les éléments des onglets,
+* gérer les éléments des menus,
+* faire un peu d'affichage,
+* obtenir des URL (formulaire, recherche, ...),
 * ...
 
-See the `full API documentation for CommonGLPI object <https://forge.glpi-project.org/apidoc/class-CommonGLPI.html>`_ for a complete list of methods provided.
+Consultez la `documentation complète de l'API pour l'objet CommonGLPI  <https://forge.glpi-project.org/apidoc/class-CommonGLPI.html>`_ pour obtenir une liste complète des méthodes fournies.
 
 CommonDBTM
 ^^^^^^^^^^
 
-This is an object to manage any database stuff; it of course inherits from `CommonGLPI`_. The class is in the ``inc/commondbtm.class.php`` file.
+Ceci est un objet permettant de gérer tout les éléments de base de données. Il hérite bien sûr de `CommonGLPI`_. La classe est dans le fichier ``inc/commondbtm.class.php``.
 
-It aims to manage database persistence and tables for all objects; and will help you to:
+Il vise à gérer la persistance de la base de données et des tables pour tous les objets et vous aidera à :
 
-* add, update or delete database rows,
-* load a row from the database,
-* get table informations (name, indexes, relations, ...)
+* ajouter, mettre à jour ou supprimer des lignes de base de données,
+* charger une ligne de la base de données,
+* récupèrer les informations des tables (nom, index, relations, ...)
 * ...
 
-The CommonDBTM object provides several of the :doc:`available hooks <../plugins/hooks>`.
+L'objet CommonDBTM fournit plusieurs :doc:`hooks <../plugins/hooks>`.
 
-See the `full API documentation for CommonDBTM object <https://forge.glpi-project.org/apidoc/class-CommonDBTM.html>`_ for a complete list of methods provided.
+Consultez la `documentation complète de l'API pour l'objet CommonDBTM <https://forge.glpi-project.org/apidoc/class-CommonDBTM.html>`_ pour une liste complète des méthodes fournies.
+
 
 CommonDropdown
 ^^^^^^^^^^^^^^
 
-This class aims to manage dropdown (lists) database stuff. It inherits from `CommonDBTM`_. The class is in the ``inc/commondropdown.class.php`` file.
+Cette classe a pour objectif de gérer les listes déroulantes d'éléments de la base de données. Elle hérite de `CommonDBTM`_. Cette classe est dans le fichier ``inc/commondropdown.class.php``.
 
-It will help you to:
+Cela vous aidera à :
 
-* manage the list,
-* import data,
+* gérer les listes,
+* importer les données,
 * ...
 
-See the `full API documentation for CommonDropdown object <https://forge.glpi-project.org/apidoc/class-CommonDropdown.html>`_ for a complete list of methods provided.
+Consultez la `documentation complète de l'API pour l'objet CommonDropdown <https://forge.glpi-project.org/apidoc/class-CommonDropdown.html>`_pour obtenir une liste complète des méthodes fournies.
+
 
 CommonTreeDropdown
 ^^^^^^^^^^^^^^^^^^
 
-This class aims to manage tree lists database stuff. It inherits from `CommonDropdown`_. The class is in the ``inc/commontreedropdown.class.php`` file.
+Cette classe a pour objectif de gérer les listes arborescentes d'éléments de la bases de données. Elle hérite de `CommonDropdown`_. Cette classe est dans le fichier ``inc/commontreedropdown.class.php``.
 
-It will mainly help you to manage the tree apsect of a dropdown (parents, children, and so on).
+Cela vous aidera principalement à gérer l’aspect arbre d’un menu déroulant (parents, enfants, etc.).
 
-See the `full API documentation for CommonTreeDropdown object <https://forge.glpi-project.org/apidoc/class-CommonTreeDropdown.html>`_ for a complete list of methods provided.
+Consultez la `documentation complète de l'API pour l'objet CommonTreeDropdown <https://forge.glpi-project.org/apidoc/class-CommonTreeDropdown.html>`_ pour une liste complète des méthodes fournies.
+
 
 CommonImplicitTreeDropdown
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-This class manages tree lists that cannot be managed by the user. It inherits from `CommonTreeDropdown`_. The class is in the ``inc/commonimplicittreedropdown.class.php`` file.
+Cette classe gère des listes d'arborescence qui ne peuvent pas être gérées par l'utilisateur. Elle hérite de `CommonTreeDropdown`_. Cette classe est dans le fichier ``inc/commonimplicittreedropdown.class.php``.
 
-See the `full API documentation for CommonTreeDropdown object <https://forge.glpi-project.org/apidoc/class-CommonTreeDropdown.html>`_ for a complete list of methods provided.
+Consultez la `documentation complète de l'API pour l'objet CommonTreeDropdown <https://forge.glpi-project.org/apidoc/class-CommonTreeDropdown.html>`_ pour une liste complète des méthodes fournies.
+
 
 CommonDBVisible
 ^^^^^^^^^^^^^^^
 
-This class helps with visibility management. It inherits from `CommonDBTM`_. The class is in the ``inc/commondbvisible.class.php`` file.
+Cette classe aide à la gestion de la visibilité. Il hérite de `CommonDBTM`_. La classe est dans le fichier ``inc/commondbvisible.class.php``.
 
-It provides methods to:
+Il fournit des méthodes pour:
 
-* know if the user can view item,
-* get dropdown parameters,
+* savoir si l'utilisateur peut voir l'élément,
+* obtenir les paramètres des listes déroulants,
 * ...
 
-See the `full API documentation for CommonDBVisible object <https://forge.glpi-project.org/apidoc/class-CommonDBVisible.html>`_ for a complete list of methods provided.
+
+Consultez `la documentation complète de l'API pour l'objet CommonDBVisible <https://forge.glpi-project.org/apidoc/class-CommonDBVisible.html>`_ pour une liste complète des méthodes fournies.
+
 
 CommonDBConnexity
 ^^^^^^^^^^^^^^^^^
 
 This class factorizes database relation and inheritance stuff. It inherits from `CommonDBTM`_. The class is in the ``inc/commondbconnexity.class.php`` file.
 
+
+
 It is not designed to be used directly, see `CommonDBChild`_ and `CommonDBRelation`_.
 
+
+
 See the `full API documentation for CommonDBConnexity object <https://forge.glpi-project.org/apidoc/class-CommonDBConnexity.html>`_ for a complete list of methods provided.
+
+
+
 
 CommonDBChild
 ^^^^^^^^^^^^^
 
-This class manages simple relations. It inherits from `CommonDBConnexity`_. The class is in the ``inc/commondbchild.class.php`` file.
+Cette classe gère les relations simples. Elle hérite de `CommonDBConnexity`_ . Cette classe est dans le fichier ``inc/commondbchild.class.php``.
 
-This object will help you to define and manage parent/child relations.
+Cet objet vous aidera à définir et à gérer les relations parent/enfant.
 
-See the `full API documentation for CommonDBChild object <https://forge.glpi-project.org/apidoc/class-CommonDBChild.html>`_ for a complete list of methods provided.
+Consultez la `documentation complète de l'API pour l'objet CommonDBChild <https://forge.glpi-project.org/apidoc/class-CommonDBChild.html>`_ pour obtenir une liste complète des méthodes fournies.
+
 
 CommonDBRelation
 ^^^^^^^^^^^^^^^^
 
-This class manages relations. It inherits from `CommonDBConnexity`_. The class is in the ``inc/commondbrelation.class.php`` file.
+Cette classe gère les relations. Elle hérite de `CommonDBConnexity`_. Cette classe est dans le fichier ``inc/commondbrelation.class.php``.
 
-Unlike `CommonDBChild`_; it is designed to declare more :ref:`complex relations; as defined in the database model <complex-relations>`. This is therefore more complex thant just using a simple relation; but it also offers many more possibilities.
+Contrairement à `CommonDBChild`_, il est conçu pour déclarer des :ref:`relations plus complexes telles que définies dans le modèle de base de données <complex-relations>`. C’est donc plus complexe que de simplement utiliser une relation simple mais cela offre aussi beaucoup plus de possibilités.
 
-In order to setup a complex relation, you'll have to define several properties, such as:
+Pour configurer une relation complexe, vous devez définir plusieurs propriétés, telles que:
 
-* ``$itemtype_1`` and ``$itemtype_2``; to set both itm types used;
-* ``$items_id_1`` and ``$items_id_2``; to set field id name.
+* ``$itemtype_1`` and ``$itemtype_2``; pour définir les deux types d'items utilisés;
+* ``$items_id_1`` and ``$items_id_2``; pour définir le nom d'identifiant de champ.
 
-Other properties let you configure how to deal with entites inheritance, ACLs; what to log on each part on several actions, and so on.
+D'autres propriétés vous permettent de configurer la gestion des héritages d'entités, ACL, de quoi se connecter sur chaque partie de différentes plusieurs actions, et ainsi de suite.
 
-The object will also help you to:
 
-* get search options and query,
-* find rights in ACLs list,
-* handle massive actions,
+L'objet vous aidera également à:
+
+* obtenir des options de recherche et de requête,
+* trouver des droits dans la liste des ACL,
+* gérer des actions massives,
 * ...
 
-See the `full API documentation for CommonDBRelation object <https://forge.glpi-project.org/apidoc/class-CommonDBRelation.html>`_ for a complete list of methods provided.
+Consultez la `documentation complète de l'API pour l'objet CommonDBRelation <https://forge.glpi-project.org/apidoc/class-CommonDBRelation.html>`_ pour obtenir une liste complète des méthodes fournies.
+
 
 CommonDevice
 ^^^^^^^^^^^^
 
-This class factorizes common requirements on devices. It inherits from `CommonDropdown`_. The class is in the ``inc/commondevice.class.php`` file.
+Cette classe prend en compte les exigences communes relatives aux périphériques. Elle hérite de `CommonDropdown`_. Cette classe est dans le fichier ``inc/commondevice.class.php``.
 
-It will help you to:
+Cela vous aidera à :
 
-* import devices,
-* handle menus,
-* do some display,
+
+* l'importation, d'appareils,
+* gérer les menus,
+* faire un peu d'affichage,
 * ...
 
-See the `full API documentation for CommonDevice object <https://forge.glpi-project.org/apidoc/class-CommonDevice.html>`_ for a complete list of methods provided.
+Consultez la `documentation complète de l'API pour l'objet CommonDevice <https://forge.glpi-project.org/apidoc/class-CommonDevice.html>`_ pour obtenir la liste complète des méthodes fournies.
 
-Common ITIL objects
+
+Objets ITIL Communs
 ^^^^^^^^^^^^^^^^^^^
-All common ITIL objects will help you with `ITIL <https://en.wikipedia.org/wiki/ITIL>`_ objects management (Tickets, Changes, Problems).
+
+Tous les objets ITIL Communs vous aideront à gérer les objets ITIL <https://en.wikipedia.org/wiki/ITIL>`_ (tickets, modifications, problèmes).
+
 
 CommonITILObject
 ++++++++++++++++
 
-Handle ITIL objects. It inherits from `CommonDBTM`_. The class is in the ``inc/commonitilobject.class.php`` file.
+Gére les objets ITIL. Hérite de `CommonDBTM`_. Cette classe est dans le fichier ``inc/commonitilobject.class.php``.
 
-It will help you to:
+Cela vous aidera à :
 
-* get users, suppliers, groups, ...
-* count them,
-* get objects for users, technicians, suppliers, ...
-* get status,
+* obtenir des utilisateurs, des fournisseurs, des groupes, ...
+* les compter,
+* obtenir des objets pour les utilisateurs, techniciens, fournisseurs, ...
+* obtenir le statut,
 * ...
 
-See the `full API documentation for CommonITILObject object <https://forge.glpi-project.org/apidoc/class-CommonITILObject.html>`_ for a complete list of methods provided.
+Consultez la `documentation complète de l'API pour l'objet CommonITILObject  <https://forge.glpi-project.org/apidoc/class-CommonITILObject.html>`_pour une liste complète des méthodes fournies.
+
 
 CommonITILActor
 +++++++++++++++
 
-Handle ITIL actors. It inherits from `CommonDBRelation`_. The class is in the ``inc/commonitilactor.class.php`` file.
+Gére les acteurs ITIL. Hérite de `CommonDBRelation`_. Cette classe est dans le fichier ``inc/commonitilactor.class.php``.
 
-It will help you to:
+Cela vous aidera à :
 
-* get actors,
-* show notifications,
-* get ACLs,
+* obtenir des acteurs,
+* afficher les notifications,
+* obtenir des ACL,
 * ...
 
-See the `full API documentation for CommonITILActor object <https://forge.glpi-project.org/apidoc/class-CommonITILActor.html>`_ for a complete list of methods provided.
+Consultez la `documentation complète de l'API pour l'objet CommonITILActor <https://forge.glpi-project.org/apidoc/class-CommonITILActor.html>`_ pour obtenir une liste complète des méthodes fournies.
+
 
 CommonITILCost
 ++++++++++++++
 
-Handle ITIL costs. It inherits from `CommonDBChild`_. The class is in the ``inc/commonitilcost.class.php`` file.
+Traiter les coûts ITIL. Hérite de `CommonDBChild`_. Cette classe est dans le fichier ``inc/commonitilcost.class.php``.
 
-It will help you to:
+Cela vous aidera à :
 
-* get item cost,
-* do some display,
+* obtenir le coût de l'article,
+* faire un peu d'affichage,
 * ...
 
-See the `full API documentation for CommonITILCost object <https://forge.glpi-project.org/apidoc/class-CommonITILCost.html>`_ for a complete list of methods provided.
+Consultez la `documentation complète de l'API pour l'objet CommonITILCost <https://forge.glpi-project.org/apidoc/class-CommonITILCost.html>`_ pour une liste complète des méthodes fournies.
+
 
 CommonITILTask
 ++++++++++++++
 
-Handle ITIL tasks. It inherits from `CommonDBTM`_. The class is in the ``inc/commonitiltask.class.php`` file.
+Gére les tâches ITIL. Hérite de `CommonDBTM`_. Cette classe est dans le fichier ``inc/commonitiltask.class.php``.
 
-It will help you to:
+Cela vous aidera à :
 
-* manage tasks ACLs,
-* do some display,
-* get search options,
+* gérer les tâches ACL,
+* faire un peu d'affichage,
+* obtenir des options de recherche,
 * ...
 
-See the `full API documentation for CommonITILTask object <https://forge.glpi-project.org/apidoc/class-CommonITILTask.html>`_ for a complete list of methods provided.
+Consultez la `documentation complète de l'API pour l'objet CommonITILTask  <https://forge.glpi-project.org/apidoc/class-CommonITILTask.html>`_ pour une liste complète des méthodes fournies.
+
 
 CommonITILValidation
 ++++++++++++++++++++
 
-Handle ITIL validation process. It inherits from `CommonDBChild`_. The class is in the ``inc/commonitilvalidation.class.php`` file.
+Gére le processus de validation ITIL. Hérite de `CommonDBChild`_. Cette classe est dans le fichier ``inc/commonitilvalidation.class.php``.
 
-It will help you to:
+Cela vous aidera à :
 
-* mange ACLs,
-* get and set status,
-* get counts,
-* do some display,
+* Gèrer les ACL,
+* obtenir et définir le statut,
+* obtenir des comptes,
+* faire un peu d'affichage,
 * ...
 
-See the `full API documentation for CommonITILValidation object <https://forge.glpi-project.org/apidoc/class-CommonITILValidation.html>`_ for a complete list of methods provided.
+Consultez la `documentation complète de l'API pour l'objet CommonITILValidation <https://forge.glpi-project.org/apidoc/class-CommonITILValidation.html>`_ pour une liste complète des méthodes fournies.

@@ -3,8 +3,8 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-GLPI Developer Documentation
-============================
+Documentation du développeur GLPI
+=================================
 
 .. image:: /_static/images/logo-GLPI-300-blue.png
    :alt: GLPI
@@ -20,8 +20,9 @@ GLPI Developer Documentation
    plugins/index
    packaging
 
-If you want to help us improve the current documentation, feel free to open pull requests! You can `see open issues <https://github.com/glpi-project/docdev/issues>`_ and `join the documentation mailing list <https://mail.gna.org/listinfo/glpi-doc>`_.
 
-Here is a list of things to be done:
+Si vous souhaitez nous aider à améliorer la documentation actuelle, n'hésitez pas à ouvrir les pull requests ! Vous pouvez `voir les problèmes en suspens <https://github.com/glpi-project/docdev/issues>`_ et rejoindre la `liste de diffusion de la documentation <https://mail.gna.org/listinfo/glpi-doc>`_.
+
+Voici une liste de choses à faire :
 
 .. todolist::
