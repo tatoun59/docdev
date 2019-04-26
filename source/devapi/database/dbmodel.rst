@@ -1,11 +1,11 @@
 .. _dbmodel:
 
-Database model
---------------
+Modèle de base de données
+-------------------------
 
-Current GLPI database contains more than 250 tables; the goal of the current documentation is to help you to understand the logic of the project, not to detail each table and possibility.
+La base de données GLPI actuelle contient plus de 250 tables. Le but de cette documentation est de vous aider à comprendre la logique du projet et non de détailler chaque table.
 
-As on every database, there are tables, relations between them (more or less complex), some relations have descriptions stored in a another table, some tables way be linked with themselves... Well, it's quite common :) Let's start with a simple example:
+Comme dans toute base de données, il y a des tables, des relations entre elles (plus ou moins complexes). Certaines relations ont des descriptions stockées dans une autre table. Certaines tables sont liées entre elles... Tout ceci est assez habituel. :-) Commençons par un exemple simple :
 
 .. image:: ../images/db_model_computer.png
    :alt: Computer model part
@@ -13,37 +13,37 @@ As on every database, there are tables, relations between them (more or less com
 
 .. note::
 
-   The above schema is an example, it is far from complete!
+   Le schéma ci-dessus est un exemple. Il est loin d'être complet !
 
-What we can see here:
+Ce que nous pouvons voir ici :
 
-* computers are directly linked to operating systems, operating systems versions, operating systems architectures, ...,
-* computers are linked to memories, processors and monitors using a relation table (which in that case permit to link those components to other items than a computer),
-* memories have a type.
+* les ordinateurs sont directement liés aux systèmes d'exploitation, aux versions des systèmes d'exploitation, aux architectures des systèmes d'exploitation, ...,
+* les ordinateurs sont liés aux mémoires, aux processeurs et aux moniteurs à l'aide d'une table de relations (qui permet dans ce cas de relier ces composants à d'autres éléments qu'un ordinateur),
+* les mémoires ont un type.
 
-As stated in the above note, this is far from complete; but this is quite representative of the whole database schema.
+Comme indiqué dans la note ci-dessus, ceci est loin d'être complet ; mais cela est assez représentatif de l'ensemble du schéma de base de données.
 
-Resultsets
-^^^^^^^^^^
+Ensembles de résultats
+^^^^^^^^^^^^^^^^^^^^^^
 
-All resultsets sent back from GLPI database should always be associative arrays.
+Tous les ensembles de résultats renvoyés à partir de la base de données GLPI doivent toujours être des tableaux associatifs.
 
 .. _dbnaming_conventions:
 
-Naming conventions
-^^^^^^^^^^^^^^^^^^
+Conventions de nommage
+^^^^^^^^^^^^^^^^^^^^^^
 
-All tables and fields names are lower case and follows the same logic. If you do not respect that; GLPI will fail to find relevant informations.
+Tous les noms de tables et de champs sont en minuscules et suivent la même logique. Si vous ne respectez pas cela, GLPI ne trouvera pas les informations pertinentes.
 
-Tables
-++++++
+Les tables
+++++++++++
 
-Tables names are linked with PHP classes names; they are all prefixed with ``glpi_``, and class name is set to plural. Plugins tables must be prefixed by ``glpi_plugin_``; followed by the plugin name, another dash, and then pluralized class name.
+Les noms de tables sont liés aux noms de classes PHP. ils portent tous le préfixe ``glpi_`` et le nom de la classe est défini au pluriel. Les tables de plugins doivent être préfixées par ``glpi_plugin_``, suivi du nom du plugin, d'un autre tiret, puis du nom de la classe au pluriel.
 
-A few examples:
+Quelques exemples :
 
 ========================  ================================
-PHP class name            Table name
+Nom de la classe PHP	     Nom de la table
 ========================  ================================
 ``Computer``              ``glpi_computers``
 ``Ticket``                ``glpi_tickets``
@@ -51,25 +51,26 @@ PHP class name            Table name
 ``PluginExampleProfile``  ``glpi_plugin_example_profiles``
 ========================  ================================
 
-Fields
-++++++
+Les champs
+++++++++++
 
 .. warning::
 
-   Each table **must** have an auto-incremented primary key named ``id``.
+   Chaque table **doit** avoir une clé primaire auto-incrémentée nommée ``id``.
 
-Field naming is mostly up to you; exept for identifiers and foreign keys. Just keep clear and concise!
 
-To add a foreign key field; just use the foreign table name without ``glpi_`` prefix, and add ``_id`` suffix.
+La dénomination des champs dépend principalement de vous excepté pour les identifiants et les clés étrangères. Restez clair et concis !
+
+Pour ajouter une clé étrangère, utilisez simplement le nom de la table étrangère sans glpi_préfixe et ajoutez un suffixe ``_id``.
 
 .. warning::
 
-   Even if adding a foreign key in a table should be perfectly correct; this is not the usual way things are done in GLPI, see `Make relations`_ to know more.
+   Même si l'ajout d'une clé étrangère dans une table devrait être parfaitement correct, ce n'est pas la façon habituelle de faire les choses dans GLPI, voir `Créer des relations`_ pour en savoir plus.
 
-A few examples:
+Quelques exemples :
 
 ================================  ==============================
-Table name                        Foreign key field name
+Nom de la table	                 Nom du champ de la clé étrangère
 ================================  ==============================
 ``glpi_computers``                ``computers_id``
 ``glpi_tickets``                  ``tickets_id``
@@ -79,12 +80,12 @@ Table name                        Foreign key field name
 
 .. _complex-relations:
 
-Make relations
-++++++++++++++
+Faire des relations
++++++++++++++++++++
 
-On most cases, you may want to made possible to link many different items to something else. Let's say you want to make possible to link a `Computer`, a `Printer` or a `Phone` to a `Memory` component. You should add foreign keys in items tables; but on something as huge as GLPI, it maybe not a good idea.
+Souvent, vous souhaiterez créer un lien entre plusieurs éléments. Supposons que vous souhaitiez lier un `ordinateur`, une `imprimante` ou un `téléphone` à un `composant de mémoire`. Vous devez ajouter des clés étrangères dans les tables d'éléments mais sur quelque chose d'aussi énorme que GLPI, ce n'est peut-être pas une bonne idée.
 
-Instead, create a relation table, that will reference the memory component along with a item id and a type, as for example:
+Au lieu de cela, créez une table de relations, qui référencera le composant de mémoire avec un identifiant d'élément et un type, comme par exemple:
 
 .. code-block:: SQL
 
@@ -99,17 +100,20 @@ Instead, create a relation table, that will reference the memory component along
       KEY `itemtype` (`itemtype`,`items_id`),
    ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-Again, this is a very simplified example of what already exists in the database, but you got the point ;)
+Encore une fois, ceci est un exemple très simplifié de ce qui existe déjà dans la base de données, mais vous avez compris le principe ;-)
 
-In this example, ``itemtype`` would be ``Computer``, ``Printer`` or ``Phone``; ``items_id`` the ``id`` of the related item.
+Dans cet exemple, ``itemtype`` serait ``Computer``, ``Printer`` ou ``Phone`` et ``items_idle``, ``l'id`` de l'élément lié.
 
-Indexes
-^^^^^^^
 
-In order to get correct performances querying database, you'll have to take care of setting some indexes. It's a nonsense to add indexes on every fields in the database; but some of them must be defined:
+Les index
+^^^^^^^^^
 
-* foreign key fields;
-* fields that are very often used (for example fields like ``is_visible``, ``itemtype``, ...),
-* primary keys ;)
+Pour obtenir des performances correctes en interrogeant la base de données, vous devrez vous occuper de la configuration de certains index. Il est absurde d'ajouter des index sur tous les champs de la base de données mais certains d'entre eux doivent être définis :
 
-You should just use the field name as key name.
+* champs de clé étrangère,
+* champs qui sont très souvent utilisés (par exemple des domaines tels que ``is_visible``, ``itemtype``, ...),
+* clés primaires ;-)
+
+Vous devriez simplement utiliser le nom du champ comme nom de clé.
+
+
