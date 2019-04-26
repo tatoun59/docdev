@@ -86,18 +86,11 @@ Consultez `la documentation complète de l'API pour l'objet CommonDBVisible <htt
 CommonDBConnexity
 ^^^^^^^^^^^^^^^^^
 
-This class factorizes database relation and inheritance stuff. It inherits from `CommonDBTM`_. The class is in the ``inc/commondbconnexity.class.php`` file.
+Cette classe factorise les relations et les héritages. Elle hérite de `CommonDBTM`_. Elle est dans le fichier ``inc/commondbconnexity.class.php``.
 
+Elle n'est pas conçu pour être utilisée directement, voir `CommonDBChild`_ et `CommonDBRelation`_.
 
-
-It is not designed to be used directly, see `CommonDBChild`_ and `CommonDBRelation`_.
-
-
-
-See the `full API documentation for CommonDBConnexity object <https://forge.glpi-project.org/apidoc/class-CommonDBConnexity.html>`_ for a complete list of methods provided.
-
-
-
+Consultez la `documentation complète de l'API pour l'objet CommonDBConnexity <https://forge.glpi-project.org/apidoc/class-CommonDBConnexity.html>`_ pour obtenir une liste complète des méthodes fournies.
 
 CommonDBChild
 ^^^^^^^^^^^^^
