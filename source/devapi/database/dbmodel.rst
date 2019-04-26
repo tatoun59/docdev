@@ -5,7 +5,7 @@ Modèle de base de données
 
 La base de données GLPI actuelle contient plus de 250 tables. Le but de cette documentation est de vous aider à comprendre la logique du projet et non de détailler chaque table.
 
-Comme dans toute base de données, il y a des tables, des relations entre elles (plus ou moins complexes). Certaines relations ont des descriptions stockées dans une autre table. Certaines tables sont liées entre elles... Tout ceci est assez habituel. :-) Commençons par un exemple simple :
+Comme dans toute base de données, il y a des tables, des relations (plus ou moins complexes). Certaines relations ont des descriptions stockées dans une autre table. Certaines tables sont liées entre elles... Tout ceci est assez habituel. :-) Commençons par un exemple simple :
 
 .. image:: ../images/db_model_computer.png
    :alt: Computer model part
@@ -21,7 +21,7 @@ Ce que nous pouvons voir ici :
 * les ordinateurs sont liés aux mémoires, aux processeurs et aux moniteurs à l'aide d'une table de relations (qui permet dans ce cas de relier ces composants à d'autres éléments qu'un ordinateur),
 * les mémoires ont un type.
 
-Comme indiqué dans la note ci-dessus, ceci est loin d'être complet ; mais cela est assez représentatif de l'ensemble du schéma de base de données.
+Comme indiqué dans la note ci-dessus, ceci est loin d'être complet mais cela est assez représentatif de l'ensemble du schéma de base de données.
 
 Ensembles de résultats
 ^^^^^^^^^^^^^^^^^^^^^^
@@ -69,14 +69,14 @@ Pour ajouter une clé étrangère, utilisez simplement le nom de la table étran
 
 Quelques exemples :
 
-================================  ==============================
+================================  =================================
 Nom de la table	                 Nom du champ de la clé étrangère
-================================  ==============================
+================================  =================================
 ``glpi_computers``                ``computers_id``
 ``glpi_tickets``                  ``tickets_id``
 ``glpi_itilcategories``           ``itilcategories_id``
 ``glpi_plugin_example_profiles``  ``plugin_example_profiles_id``
-================================  ==============================
+================================  =================================
 
 .. _complex-relations:
 
@@ -85,7 +85,7 @@ Faire des relations
 
 Souvent, vous souhaiterez créer un lien entre plusieurs éléments. Supposons que vous souhaitiez lier un `ordinateur`, une `imprimante` ou un `téléphone` à un `composant de mémoire`. Vous devez ajouter des clés étrangères dans les tables d'éléments mais sur quelque chose d'aussi énorme que GLPI, ce n'est peut-être pas une bonne idée.
 
-Au lieu de cela, créez une table de relations, qui référencera le composant de mémoire avec un identifiant d'élément et un type, comme par exemple:
+Au lieu de cela, créez une table de relations qui référencera le composant de mémoire avec un identifiant d'élément et un type, comme par exemple:
 
 .. code-block:: SQL
 
